@@ -1,7 +1,5 @@
 from tkinter import Tk
-from set_picture import SetPicture
-from extract_colors import ExtractColors
-from create_colors_labels import CreateColorsLabels
+from set_widget import SetWidget
 
 class App(Tk):
     def __init__(self):
@@ -15,13 +13,7 @@ class App(Tk):
         print(f"width: {self.screen_width}, height:{self.screen_height}")
         self.minsize(width=400, height=600)
 
-        # pass dependencies between classes
-        self.set_picture = SetPicture(self)
-        self.extract_colors = ExtractColors(self)
-        self.create_color_labels = CreateColorsLabels(self)
-
-        # dependency injection
-        self.set_picture.extract_colors = self.extract_colors
+        self.set_interface = SetWidget(self)
 
         # run app
         self.mainloop()
