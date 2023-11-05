@@ -1,5 +1,7 @@
 from tkinter import Tk
 from set_widget import SetWidget
+from create_colors_labels import CreateColorsLabels
+
 
 class App(Tk):
     def __init__(self):
@@ -14,9 +16,11 @@ class App(Tk):
         self.minsize(width=400, height=600)
 
         self.set_interface = SetWidget(self)
+        self.create_labels = CreateColorsLabels()
 
         # run app
         self.mainloop()
+
 
 if __name__ == '__main__':
     app = App()

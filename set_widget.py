@@ -6,6 +6,8 @@ import extract_colors
 
 
 class SetWidget(ttk.Frame):
+    """This class create all widgets and guarantees the operation of the buttons"""
+
     def __init__(self, app_reference):
         super().__init__(app_reference)
         self.app_reference = app_reference
@@ -56,11 +58,8 @@ class SetWidget(ttk.Frame):
         amount_of_colors = self.get_amount_of_colors()
         extracted_colors = extract_colors.ExtractColors(path=self.image_path, amount=amount_of_colors)
         self.colors = extracted_colors.color_hex
-        print("def submit",self.colors)
-        if self.instance_ccl != None:
-            self.instance_ccl.destroy_frame()
-
-        self.instance_ccl = create_colors_labels.CreateColorsLabels(self.colors)
+        print("def submit", self.colors)
+        self.app_reference.create_labels.display_colors(self.colors)
 
     def display_image(self) -> None:
         print("set picture activated")

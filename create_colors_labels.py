@@ -3,24 +3,22 @@ import clipboard
 
 
 class CreateColorsLabels:
-    """
-    1.If some labels already exist, they will be destroyed
+    """1.Make a frame for labels with colors
+    2.If some labels already exist, they will be destroyed
     3.New labels with colors are created """
 
-    def __init__(self,colors_list:list):
-        self.colors_list = colors_list
-
+    def __init__(self):
         self.color_labels = []
+        self.make_frame()
 
-        self.display_colors()
     def make_frame(self):
         self.frame = tkinter.Frame()
         self.frame.pack()
         self.frame.config(bg="white")
 
-    def display_colors(self) -> None:
-        self.make_frame()
-        for num, color in enumerate(self.colors_list):
+    def display_colors(self, colors_list: list) -> None:
+        self.destroy_existing_labels()
+        for num, color in enumerate(colors_list):
             print(f"{num}: {color}")
 
             # create coloured square
@@ -46,22 +44,11 @@ class CreateColorsLabels:
 
             # list append
             self.color_labels.append((label, self.label_hexa_code))
-            print(f"display:{self.color_labels}")
 
     def destroy_existing_labels(self):
-        print("destroy: ",self.color_labels)
-
         for colour_label, hexa_label in self.color_labels:
             colour_label.destroy()
             hexa_label.destroy()
-
-    def destroy_frame(self):
-        print("destroy frame", self.frame.winfo_children())
-        for widgets in self.frame.winfo_children():
-            widgets.destroy()
-
-    def __del__(self):
-        print("Instance destroyed")
 
     def copy_to_clipboard(self) -> None:
         text = self.label_hexa_code.cget("text")
